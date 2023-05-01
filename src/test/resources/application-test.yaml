@@ -1,0 +1,4 @@
+db:
+  username: test
+  driver: postgres
+  password: pass

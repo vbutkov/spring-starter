@@ -1,0 +1,38 @@
+db:
+  username: ${username.value:postgres}
+  driver: postgres
+  password: pass
+  url: postgres:5432
+  hosts: localhost,127.0.0.1
+  properties:
+    first: 12
+    second: 23
+    third.value: 34
+  pool:
+    size: 12
+    timeout: 10
+  pools:
+    - size: 1
+      timeout: 1
+    - size: 2
+      timeout: 2
+    - size: 3
+      timeout: 3
+
+spring:
+  profiles:
+    active: qa
+  datasource:
+    url: jdbc:postgresql://localhost:5433/spring
+    username: postgres
+    password: pass
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  level:
+    root: INFO
+    ru.dmdev.database.pool.ConnectionPool: INFO
+  file:
+    name: dmdev.log
+    path: /
+

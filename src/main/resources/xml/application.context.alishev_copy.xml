@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+    <context:property-placeholder location="classpath:music.player.properties"/>
+    <context:component-scan base-package="ru"/>
+
+    <!--    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
+
+    <bean class="ru.dmdev.bpp.InjectBeanPosProcessor"/>
+    <bean class="ru.dmdev.bpp.TransactionBeanPosProcessor"/>
+    <bean class="ru.dmdev.bpp.AuditingBeanPosProcessor"/>
+
+    <bean class="ru.dmdev.bfpp.LogBeanFactoryPostProcessor"/>
+    <bean class="ru.dmdev.bfpp.VerifyPropertyBeanFactoryPostProcessor"/>
+
+    <bean id="musicClassicalBean"
+          class="ru.alishev.ClassicalMusic">
+    </bean>
+    <bean id="musicRockBean"
+          class="ru.alishev.RockMusic">
+    </bean>
+    <bean id="musicPopBean"
+          class="ru.alishev.PopMusic">
+    </bean>
+
+    <bean id="musicPlayer" class="ru.alishev.MusicPlayer" scope="prototype">
+        <!--        <property name="musics">-->
+        <!--            <list value-type="ru.alishev.Music">-->
+        <!--                <ref bean="musicPopBean"/>-->
+        <!--                <ref bean="musicClassicalBean"/>-->
+        <!--                <ref bean="musicRockBean"/>-->
+        <!--            </list>-->
+        <!--        </property>-->
+
+        <constructor-arg>
+            <list>
+                <ref bean="musicPopBean"/>
+                <ref bean="musicClassicalBean"/>
+                <ref bean="musicRockBean"/>
+            </list>
+        </constructor-arg>
+
+
+        <!--        <constructor-arg ref="music"/>-->
+        <!--        <property name="musics" ref="musicClassicalBean"/>-->
+
+        <!--        <property name="name" value="Music player"/>-->
+        <!--        <property name="volume" value="50"/>-->
+
+        <property name="name" value="${music.player.name}"/>
+        <property name="volume" value="${music.player.volume}"/>
+
+    </bean>
+
+    <!--    <bean id="connectionPool1" class="ru.dmdev.database.pool.ConnectionPool"/>-->
+<!--    <bean id="connectionPool" class="ru.dmdev.database.pool.ConnectionPool">-->
+<!--        &lt;!&ndash;    init-method="init"&ndash;&gt;-->
+<!--        &lt;!&ndash;    destroy-method="destroy">&ndash;&gt;-->
+
+<!--        <constructor-arg index="0" value="postgres"/>-->
+<!--        <constructor-arg index="1" value="10"/>-->
+<!--        <constructor-arg index="2">-->
+<!--            <list>-->
+<!--                <value>&#45;&#45;arg1=value1</value>-->
+<!--                <value>&#45;&#45;arg2=value2</value>-->
+<!--            </list>-->
+<!--        </constructor-arg>-->
+<!--        <constructor-arg index="3">-->
+<!--            <map>-->
+<!--                <entry key="url" value="postgres.url"/>-->
+<!--                <entry key="password" value="postgres.password"/>-->
+<!--            </map>-->
+<!--        </constructor-arg>-->
+
+<!--    </bean>-->
+
+    <bean id="companyRepository" class="ru.dmdev.repository.CompanyRepository"/>
+
+
+</beans>

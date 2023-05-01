@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    <context:property-placeholder location="classpath:music.player.properties"/>-->
+<!--    <context:component-scan base-package="ru"-->
+<!--                            annotation-config="true"-->
+<!--                            resource-pattern="**/*.class"-->
+<!--                            scoped-proxy="no"-->
+<!--                            use-default-filters="false">-->
+<!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>-->
+<!--        <context:include-filter type="assignable" expression="ru.dmdev.repository.CrudRepository"/>-->
+<!--        <context:include-filter type="regex" expression="ru\..+Repository"/>-->
+<!--    </context:component-scan>-->
+
+
+    <bean id="musicClassicalBean"
+          class="ru.alishev.ClassicalMusic">
+    </bean>
+    <bean id="musicRockBean"
+          class="ru.alishev.RockMusic">
+    </bean>
+    <bean id="musicPopBean"
+          class="ru.alishev.PopMusic">
+    </bean>
+
+    <bean id="musicPlayer" class="ru.alishev.MusicPlayer" scope="prototype">
+        <!--        <property name="musics">-->
+        <!--            <list value-type="ru.alishev.Music">-->
+        <!--                <ref bean="musicPopBean"/>-->
+        <!--                <ref bean="musicClassicalBean"/>-->
+        <!--                <ref bean="musicRockBean"/>-->
+        <!--            </list>-->
+        <!--        </property>-->
+
+        <constructor-arg>
+            <list>
+                <ref bean="musicPopBean"/>
+                <ref bean="musicClassicalBean"/>
+                <ref bean="musicRockBean"/>
+            </list>
+        </constructor-arg>
+
+        <!--        <constructor-arg ref="music"/>-->
+        <!--        <property name="musics" ref="musicClassicalBean"/>-->
+
+        <property name="name" value="${music.player.name}"/>
+        <property name="volume" value="${music.player.volume}"/>
+
+    </bean>
+
+
+    <!--    <constructor-arg name="args" type="java.util.List">-->
+    <!--        <list>-->
+    <!--            <value>&#45;&#45;arg1=value1</value>-->
+    <!--            <value>&#45;&#45;arg2=value2</value>-->
+    <!--            <ref bean="driver"/>-->
+    <!--        </list>-->
+    <!--    </constructor-arg>-->
+    <!--    <property name="properties">-->
+    <!--        <map>-->
+    <!--            <entry key="url" value="postgres.url"/>-->
+    <!--            <entry key="password" value="123"/>-->
+    <!--        </map>-->
+    <!--    </property>-->
+
+
+    <bean id="driver" class="java.lang.String">
+        <constructor-arg type="java.lang.String" value="${db.driver}"/>
+    </bean>
+
+</beans>
