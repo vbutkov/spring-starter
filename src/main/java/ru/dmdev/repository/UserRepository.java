@@ -6,9 +6,9 @@ import ru.dmdev.database.pool.ConnectionPool;
 @Repository
 public class UserRepository {
 
-    private ConnectionPool connectionPool;
+    private ConnectionPool pool1;
 
-    public UserRepository(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
+    public UserRepository(ConnectionPool pool1) {
+        this.pool1 = pool1;
     }
 }

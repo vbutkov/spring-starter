@@ -2,17 +2,13 @@ package ru.dmdev.database.pool;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import ru.dmdev.config.JpaConfiguration;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import java.util.List;
-import java.util.Map;
 
-@Component
+@Component("pool1")
 public class ConnectionPool {
     private final String username;
     private final Integer poolSize;

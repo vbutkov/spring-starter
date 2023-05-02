@@ -1,11 +1,8 @@
 package ru.dmdev;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.dmdev.config.ApplicationConfiguration;
-import ru.dmdev.database.pool.Company;
 import ru.dmdev.database.pool.ConnectionPool;
-import ru.dmdev.repository.CrudRepository;
 import ru.dmdev.service.CompanyService;
 
 public class ApplicationRunner {

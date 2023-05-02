@@ -1,9 +1,7 @@
 package ru.dmdev.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.dmdev.database.pool.Company;
-import ru.dmdev.repository.CompanyRepository;
+import ru.dmdev.database.entity.Company;
 import ru.dmdev.repository.CrudRepository;
 import ru.dmdev.repository.UserRepository;
 

@@ -2,7 +2,7 @@ package ru.dmdev.service;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
-import ru.dmdev.database.pool.Company;
+import ru.dmdev.database.entity.Company;
 import ru.dmdev.dto.CompanyReadDto;
 import ru.dmdev.listener.entity.AccessType;
 import ru.dmdev.listener.entity.EntityEvent;
